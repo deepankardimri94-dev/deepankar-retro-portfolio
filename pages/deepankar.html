@@ -3,459 +3,870 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>~*~DeEpAnKaR dImRi~*~ :: The Growth Speedrunner :: SDR to Head of Growth Any% WR</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/tanay-custom.css">
+  <title>Deepankar Dimri — Head of Growth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    /* Page-specific overrides */
-    .page-wrapper {
-      max-width: 900px;
+    /* === DESIGN TOKENS === */
+    :root {
+      --bg: #141413;
+      --bg-elevated: #1c1b1a;
+      --bg-card: #1f1e1d;
+      --bg-subtle: rgba(139, 92, 246, 0.04);
+
+      --purple-50: #f5f3ff;
+      --purple-100: #ede9fe;
+      --purple-200: #ddd6fe;
+      --purple-300: #c4b5fd;
+      --purple-400: #a78bfa;
+      --purple-500: #8b5cf6;
+      --purple-600: #7c3aed;
+      --purple-700: #6d28d9;
+      --purple-800: #5b21b6;
+      --purple-900: #4c1d95;
+
+      --text-primary: #c4b5fd;
+      --text-secondary: #a78bfa;
+      --text-muted: rgba(167, 139, 250, 0.5);
+      --text-heading: #ede9fe;
+      --text-accent: #8b5cf6;
+      --text-bright: #f5f3ff;
+
+      --border: rgba(139, 92, 246, 0.12);
+      --border-strong: rgba(139, 92, 246, 0.25);
+
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+      --space-xs: clamp(0.5rem, 0.4rem + 0.4vw, 0.75rem);
+      --space-s: clamp(0.75rem, 0.6rem + 0.6vw, 1rem);
+      --space-m: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+      --space-l: clamp(2.5rem, 2rem + 2vw, 4rem);
+      --space-xl: clamp(4rem, 3rem + 4vw, 7rem);
+      --space-2xl: clamp(6rem, 4rem + 6vw, 10rem);
+
+      --margin: clamp(1.5rem, 1rem + 4vw, 5rem);
+      --max-width: 720px;
+    }
+
+    /* === RESET === */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: rgba(139, 92, 246, 0.35);
+      color: var(--purple-50);
+    }
+
+    img, svg { display: block; max-width: 100%; }
+    a { color: var(--text-accent); text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: var(--purple-300); }
+
+    /* === NOISE TEXTURE OVERLAY === */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px;
+    }
+
+    /* === LAYOUT === */
+    .container {
+      width: 100%;
+      max-width: calc(var(--max-width) + var(--margin) * 2);
       margin: 0 auto;
-      padding-bottom: 40px;
+      padding: 0 var(--margin);
+    }
+
+    .container--wide {
+      max-width: calc(960px + var(--margin) * 2);
+    }
+
+    section {
+      padding: var(--space-xl) 0;
+    }
+
+    /* === DIVIDER === */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-strong), transparent);
+      border: none;
+      margin: 0;
+    }
+
+    .divider--accent {
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--purple-600), var(--purple-500), var(--purple-600), transparent);
+    }
+
+    /* === TYPOGRAPHY === */
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      color: var(--text-heading);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 2.2rem + 3.5vw, 5.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
+      line-height: 1.15;
+      margin-bottom: var(--space-m);
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+      line-height: 1.3;
+      margin-bottom: var(--space-xs);
+    }
+
+    .label {
+      font-family: var(--font-mono);
+      font-size: clamp(0.65rem, 0.6rem + 0.2vw, 0.75rem);
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .body-large {
+      font-size: clamp(1.15rem, 1rem + 0.5vw, 1.375rem);
+      line-height: 1.65;
+    }
+
+    /* === NAV === */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: var(--space-s) 0;
+      background: rgba(20, 20, 19, 0.85);
+      backdrop-filter: blur(16px) saturate(1.2);
+      -webkit-backdrop-filter: blur(16px) saturate(1.2);
+      border-bottom: 1px solid var(--border);
+      transition: transform 0.4s var(--ease-out);
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--text-heading);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-m);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--purple-500);
+      transition: width 0.3s var(--ease-out);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: var(--space-s); }
+      .nav-links a { font-size: 0.65rem; }
+    }
+
+    /* === HERO === */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: calc(68px + var(--space-xl));
+      padding-bottom: var(--space-xl);
+      position: relative;
+    }
+
+    .hero-label {
+      margin-bottom: var(--space-m);
+    }
+
+    .hero h1 {
+      margin-bottom: var(--space-m);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--purple-400);
+    }
+
+    .hero-intro {
+      max-width: 540px;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-l);
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-heading);
+      padding: 0.875rem 2rem;
+      border: 1px solid var(--border-strong);
+      border-radius: 0;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+      text-decoration: none;
+    }
+
+    .hero-cta:hover {
+      background: rgba(139, 92, 246, 0.08);
+      border-color: var(--purple-500);
+      color: var(--purple-300);
+    }
+
+    .hero-cta svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.3s var(--ease-out);
+    }
+
+    .hero-cta:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* Hero ambient glow */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 15%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(109, 40, 217, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* === PULL QUOTE === */
+    .pull-quote {
+      padding: var(--space-xl) 0;
+    }
+
+    .pull-quote blockquote {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
+      line-height: 1.3;
+      color: var(--text-heading);
+      font-style: italic;
+      position: relative;
+      padding-left: var(--space-m);
+      border-left: 2px solid var(--purple-600);
+    }
+
+    .pull-quote cite {
+      display: block;
+      margin-top: var(--space-s);
+      padding-left: var(--space-m);
+      font-family: var(--font-mono);
+      font-style: normal;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* === ABOUT === */
+    .about-content {
+      display: grid;
+      gap: var(--space-l);
+    }
+
+    .about-content p {
+      color: var(--text-primary);
+    }
+
+    .about-content p strong {
+      color: var(--text-heading);
+      font-weight: 500;
+    }
+
+    .about-highlight {
+      padding: var(--space-m);
+      background: var(--bg-subtle);
+      border-left: 2px solid var(--purple-700);
+    }
+
+    .about-highlight p {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 1rem + 0.4vw, 1.35rem);
+      font-style: italic;
+      color: var(--purple-300);
+      line-height: 1.6;
+    }
+
+    /* === STATS ROW === */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .stat {
+      padding: var(--space-m);
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+      color: var(--text-heading);
+      line-height: 1;
+      margin-bottom: var(--space-xs);
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* === TIMELINE === */
+    .timeline {
+      display: grid;
+      gap: 0;
+    }
+
+    .timeline-entry {
+      display: grid;
+      grid-template-columns: clamp(80px, 10vw, 140px) 1fr;
+      gap: var(--space-m);
+      padding: var(--space-l) 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+
+    .timeline-entry:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline-period {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      padding-top: 0.3rem;
+    }
+
+    .timeline-role {
+      color: var(--text-heading);
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 1rem + 0.6vw, 1.5rem);
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-company {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--purple-500);
+      margin-bottom: var(--space-s);
+    }
+
+    .timeline-desc {
+      color: var(--text-primary);
+      max-width: 520px;
+    }
+
+    .timeline-tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--purple-400);
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.6rem;
+      margin-top: var(--space-s);
+      margin-right: 0.4rem;
+    }
+
+    @media (max-width: 600px) {
+      .timeline-entry {
+        grid-template-columns: 1fr;
+        gap: var(--space-xs);
+      }
+    }
+
+    /* === PHILOSOPHY / FRAMEWORKS === */
+    .frameworks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .framework-card {
+      padding: var(--space-l) var(--space-m);
+      background: var(--bg);
+    }
+
+    .framework-number {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 2rem + 3vw, 5rem);
+      line-height: 1;
+      color: rgba(139, 92, 246, 0.12);
+      margin-bottom: var(--space-s);
+    }
+
+    .framework-card h3 {
+      color: var(--text-heading);
+      margin-bottom: var(--space-s);
+    }
+
+    .framework-card p {
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    /* === CONTACT === */
+    .contact {
+      text-align: center;
+      padding: var(--space-2xl) 0;
+    }
+
+    .contact h2 {
+      margin-bottom: var(--space-s);
+    }
+
+    .contact p {
+      color: var(--text-secondary);
+      margin-bottom: var(--space-l);
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-heading);
+      padding: 1rem 2.5rem;
+      border: 1px solid var(--border-strong);
+      transition: all 0.3s var(--ease-out);
+    }
+
+    .contact-link:hover {
+      background: rgba(139, 92, 246, 0.08);
+      border-color: var(--purple-500);
+      color: var(--purple-300);
+      transform: translateY(-1px);
+    }
+
+    /* === FOOTER === */
+    footer {
+      padding: var(--space-l) 0;
+      border-top: 1px solid var(--border);
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-s);
+    }
+
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    /* === SCROLL REVEAL === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* === HERO STAGGER === */
+    .hero .reveal {
+      transform: translateY(32px);
+      transition-duration: 0.9s;
+    }
+
+    /* === CUSTOM SCROLLBAR === */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(139, 92, 246, 0.2);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.35); }
+
+    /* === REDUCED MOTION === */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
-<body class="bg-tiled tanay-page">
-  <canvas id="matrix-canvas"></canvas>
+<body>
 
-  <!-- TOP MARQUEE -->
-  <div class="marquee-bar">
-    <div class="marquee-content">
-      &#9733; WELCOME TO DEEPANKAR'S GROWTH GALAXY &#9733; HEAD OF GROWTH @ CUBEAPM &#9733; SPEEDRAN FROM SDR TO HEAD OF GROWTH &#9733; B.TECH IN CS &#9733; MICA DIGITAL MARKETING GRAD &#9733; OBSERVABILITY ENTHUSIAST &#9733; FORMERLY 5X, MAILMODO, TRADEMO &#9733; HAS HIS NEXT JOB LINED UP BEFORE HE FINISHES HIS CURRENT ONE &#9733; TWO DEGREES THAT ACTUALLY MAKE SENSE TOGETHER &#9733; THE GROWTH NEVER STOPS &#9733;
+  <!-- NAV -->
+  <nav>
+    <div class="container container--wide">
+      <span class="nav-name">Deepankar Dimri</span>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#philosophy">Philosophy</a></li>
+        <li><a href="#connect">Connect</a></li>
+      </ul>
     </div>
-  </div>
+  </nav>
 
-  <!-- UNDER CONSTRUCTION -->
-  <div class="under-construction">
-    <div class="under-construction-inner">
-      <span class="blink">&#128679; THIS PAGE IS UNDER CONSTRUCTION (but Deepankar already has plans for the next version) &#128679;</span>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <p class="label hero-label reveal">Head of Growth &mdash; CubeAPM</p>
+      <h1 class="reveal reveal-delay-1">I started as<br>an SDR.<br>Now I lead <em>growth.</em></h1>
+      <p class="body-large hero-intro reveal reveal-delay-2">
+        No shortcuts. No hacks. Just a decade of learning what actually moves the needle in B2B SaaS&mdash;one cold call, one experiment, one company at a time.
+      </p>
+      <a href="#about" class="hero-cta reveal reveal-delay-3">
+        Read the story
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
     </div>
-  </div>
+  </section>
 
-  <div class="page-wrapper">
+  <hr class="divider divider--accent">
 
-    <!-- HEADER -->
-    <div class="tanay-header">
-      <div class="bali-vibes">&#128200;&#128640;&#129504;&#127942;&#9889;&#128200;&#128640;&#129504;&#127942;&#9889;</div>
-
-      <div class="tanay-avatar" id="avatar">
-        &#128200;
-      </div>
-      <br>
-
-      <h1>
-        <span class="fire-text dance-text">Deepankar Dimri</span>
-      </h1>
-      <div class="subtitle">
-        <span class="glitch" data-text="~* Head of Growth @ CubeAPM | The Growth Speedrunner | Observability Nerd *~">~* Head of Growth @ CubeAPM | The Growth Speedrunner | Observability Nerd *~</span>
-      </div>
-      <br>
-
-      <!-- MIDI PLAYER -->
-      <div class="midi-player">
-        <div class="eq-bars">
-          <div class="eq-bar"></div>
-          <div class="eq-bar"></div>
-          <div class="eq-bar"></div>
-          <div class="eq-bar"></div>
-          <div class="eq-bar"></div>
-          <div class="eq-bar"></div>
-          <div class="eq-bar"></div>
-        </div>
-        <div class="controls">
-          <button title="Previous">&#9664;&#9664;</button>
-          <button title="Play/Pause">&#9654;</button>
-          <button title="Next">&#9654;&#9654;</button>
-          <button title="Stop">&#9632;</button>
-        </div>
-        <div class="song-name">
-          <span>&#127925; NOW PLAYING: deepankar_sdr_to_head_of_growth_speedrun_any%_WR.midi</span>
-        </div>
-      </div>
-      <br>
-
-      <!-- CERTIFICATION BADGES -->
-      <div class="cert-strip">
-        <span class="cert-badge clay">&#128187; B.Tech Computer Science</span>
-        <span class="cert-badge lindy">&#127891; MICA Marketing Grad</span>
-        <span class="cert-badge bots">&#128200; Growth Machine</span>
-        <span class="cert-badge accenture">&#128064; Observability Expert</span>
-      </div>
-
-      <!-- EYES -->
-      <div class="eyes-container" style="justify-content: center; display: flex; margin-top: 10px;">
-        <div class="eye"><div class="pupil"></div></div>
-        <div class="eye"><div class="pupil"></div></div>
-      </div>
+  <!-- PULL QUOTE -->
+  <section class="pull-quote">
+    <div class="container">
+      <blockquote class="reveal">
+        Most people optimize their resume. I optimized for reps. Every role taught me something the last one couldn't.
+      </blockquote>
+      <cite class="reveal reveal-delay-1">&mdash; The operating principle</cite>
     </div>
+  </section>
 
-    <!-- NEWS TICKER -->
-    <div class="news-ticker">
-      <span>BREAKING NEWS: Man speedruns from SDR to Head of Growth so fast his LinkedIn can't keep up. &#9733; WEATHER UPDATE: Forecast calls for 100% chance of growth metrics going up. Deepankar's involvement confirmed. &#9733; SPORTS: Deepankar Dimri sets new world record in "Career Progression Any%" category. Previous record holder still an SDR. &#9733; SCIENCE: Researchers discover Deepankar has already accepted his next job before starting his current one. They call it "quantum career planning."</span>
-    </div>
+  <hr class="divider">
 
-    <!-- MYSPACE-STYLE PROFILE -->
-    <div class="myspace-profile">
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="label reveal">About</p>
+      <h2 class="reveal reveal-delay-1">The short version</h2>
 
-      <!-- LEFT COLUMN -->
-      <div class="profile-left">
+      <div class="about-content">
+        <p class="body-large reveal reveal-delay-2">
+          I'm Deepankar Dimri. I lead growth at <strong>CubeAPM</strong>, a modern observability platform. Before that, I built growth engines at five different B2B SaaS companies across data, email, supply chain, and digital transformation.
+        </p>
 
-        <!-- MOOD BOX -->
-        <div class="retro-box">
-          <div class="retro-box-title">
-            <span>&#128172; Deepankar's Mood</span>
-            <div class="window-buttons"><span>_</span><span>&#9633;</span><span>X</span></div>
-          </div>
-          <div class="retro-box-content">
-            <div class="mood-box">
-              <b>Current Mood:</b> <span class="spin">&#128200;</span> Growing Exponentially<br>
-              <b>Status:</b> <span class="blink" style="color: var(--neon-green);">OBSERVING EVERYTHING</span><br>
-              <b>Location:</b> &#127470;&#127475; India<br>
-              <b>Vibe:</b> &#128293;&#128293;&#128293;&#128293;&#128293;<br>
-              <b>Last Login:</b> While planning his next career move<br>
-              <b>Relationship:</b> Committed to MoM Growth &#128149;
-            </div>
-          </div>
+        <p class="reveal reveal-delay-3">
+          Here's the thing most people don't say out loud: <strong>I started on the phones.</strong> SDR. Cold calls. Rejections that would make your CRM cry. And I wouldn't trade a single one of those dials for a shortcut.
+        </p>
+
+        <p class="reveal">
+          That grind gave me something you can't learn from a playbook&mdash;an instinct for what real buyers actually care about. Not what your personas doc says they care about. What they <em>actually</em> care about.
+        </p>
+
+        <div class="about-highlight reveal">
+          <p>
+            I have a B.Tech in Computer Science and a postgrad in Digital Marketing from MICA. The engineer brain builds the systems. The marketer brain finds the signal. Together, they're the unfair advantage.
+          </p>
         </div>
 
-        <!-- TOP FRIENDS -->
-        <div class="retro-box">
-          <div class="retro-box-title">
-            <span>&#128101; Deepankar's Top 8</span>
-            <div class="window-buttons"><span>_</span><span>&#9633;</span><span>X</span></div>
-          </div>
-          <div class="retro-box-content" style="font-size: 12px; color: #ccccff;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; text-align: center;">
-              <div><span style="font-size:28px">&#128064;</span><br><span style="font-size:10px; color: var(--neon-yellow);">CubeAPM</span></div>
-              <div><span style="font-size:28px">&#128200;</span><br><span style="font-size:10px; color: var(--neon-yellow);">5X Data</span></div>
-              <div><span style="font-size:28px">&#128231;</span><br><span style="font-size:10px; color: var(--neon-yellow);">Mailmodo</span></div>
-              <div><span style="font-size:28px">&#129504;</span><br><span style="font-size:10px; color: var(--neon-yellow);">NIIT University</span></div>
-              <div><span style="font-size:28px">&#127891;</span><br><span style="font-size:10px; color: var(--neon-yellow);">MICA</span></div>
-              <div><span style="font-size:28px">&#128202;</span><br><span style="font-size:10px; color: var(--neon-yellow);">Growth Metrics</span></div>
-              <div><span style="font-size:28px">&#9749;</span><br><span style="font-size:10px; color: var(--neon-yellow);">Chai</span></div>
-              <div><span style="font-size:28px">&#128640;</span><br><span style="font-size:10px; color: var(--neon-yellow);">Career Speedrun</span></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- FAKE MUSIC PLAYLIST -->
-        <div class="retro-box">
-          <div class="retro-box-title">
-            <span>&#127925; My Playlist</span>
-            <div class="window-buttons"><span>_</span><span>&#9633;</span><span>X</span></div>
-          </div>
-          <div class="retro-box-content" style="font-family: 'Comic Sans MS', cursive; font-size: 11px; color: #ccccff;">
-            <div style="margin-bottom: 4px;">&#127925; I Observe You (Every Metric You Make) - The Police</div>
-            <div style="margin-bottom: 4px;">&#127925; Growth On My Mind - Always</div>
-            <div style="margin-bottom: 4px;">&#127925; SDR In The Wind - Elton John</div>
-            <div style="margin-bottom: 4px;">&#127925; Stairway to Head of Growth - Led Zeppelin</div>
-            <div style="margin-bottom: 4px;">&#127925; Smells Like B2B SaaS Spirit - Nirvana</div>
-            <div style="margin-bottom: 4px;">&#127925; Bohemian MQLsody - Queen</div>
-            <div style="margin-bottom: 4px;">&#127925; Sweet Chai O' Mine - Guns N' Metrics</div>
-            <div style="margin-bottom: 4px;">&#127925; Don't Stop Me Now (I'm Getting Promoted)</div>
-          </div>
-        </div>
-
-        <!-- LinkedIn Link -->
-        <div style="text-align: center; padding: 10px;">
-          <a href="https://www.linkedin.com/in/deepankar-dimri/" target="_blank"
-             style="font-family: var(--pixel-font); font-size: 9px; color: var(--neon-blue); border: 2px solid var(--neon-blue); padding: 8px 12px; display: inline-block; text-decoration: none;">
-            &#128279; MY LINKEDIN (the boring version)
-          </a>
-        </div>
-
-      </div>
-
-      <!-- RIGHT COLUMN -->
-      <div class="profile-right">
-
-        <!-- ABOUT ME -->
-        <div class="retro-box">
-          <div class="retro-box-title">
-            <span>&#128100; About Me (the REAL story)</span>
-            <div class="window-buttons"><span>_</span><span>&#9633;</span><span>X</span></div>
-          </div>
-          <div class="retro-box-content">
-            <div style="font-family: 'Comic Sans MS', cursive; font-size: 13px; color: #ffccff; line-height: 1.6;">
-              <p style="font-size: 16px; color: var(--neon-yellow); margin-bottom: 10px;">
-                <span class="wobble">&#128075;</span> namaste &amp; welcome 2 my page!!1!
-              </p>
-              <p>
-                my name is <b style="color: var(--neon-green); font-size: 16px;">DEEPANKAR DIMRI</b> and i am the
-                <span style="color: var(--neon-pink);">Head of Growth</span> at
-                <span style="color: var(--neon-blue);">CubeAPM</span> &#128200;&#128640;&#128064;
-              </p>
-              <br>
-              <p>
-                CubeAPM is a modern <span class="rainbow-text"><b>OBSERVABILITY PLATFORM</b></span> which means
-                i literally OBSERVE things for a living. i observe growth metrics. i observe user behavior. i observe
-                my own career trajectory going straight up like a hockey stick chart. it's very meta. &#128064;&#128064;&#128064;
-              </p>
-              <br>
-              <p>
-                <span class="blink" style="color: var(--cyber-red);">SPEEDRUN ALERT:</span>
-                i went from <b>SDR</b> &#8594; <b>Growth Manager</b> &#8594; <b>Senior Manager of Growth</b> &#8594;
-                <b>Head of Growth</b> faster than most people finish onboarding at their first job.
-                <span class="spin-fast">&#128640;</span> some people call it ambition. i call it "the LinkedIn feed can't refresh fast enough to keep up with my title changes."
-              </p>
-              <br>
-              <p>
-                before CubeAPM i was Senior Manager of Growth Marketing at
-                <span style="color: var(--neon-orange);">5X</span> (Data &amp; AI platform).
-                before that, <span style="color: var(--neon-yellow);">Mailmodo</span> (email marketing),
-                <span style="color: var(--neon-blue);">Trademo</span> (supply chain),
-                and <span style="color: var(--neon-green);">Provana</span> (digital transformation).
-                basically i've been on a B2B SaaS world tour. every company a different stage. &#127928;
-              </p>
-              <br>
-              <p>
-                the REAL power move? i have TWO degrees that actually complement each other:
-                <b>B.Tech in Computer Science</b> from NIIT University AND
-                <b>Digital Marketing</b> from MICA. the technical brain AND the marketing brain.
-                i am a <span style="color: var(--neon-pink);"><b>DUAL-WIELDING GROWTH WARRIOR</b></span>. &#9876;&#9876;
-              </p>
-              <br>
-              <p>
-                oh and i literally started as a <span style="color: var(--neon-yellow);">software engineering intern</span>
-                and a Research Associate at Global Market Insights before pivoting to growth. so i can code AND market.
-                the most dangerous combination since peanut butter and jelly. &#129367;
-              </p>
-              <br>
-              <p style="font-size: 15px; text-align: center; color: var(--neon-green); border: 1px dashed var(--neon-green); padding: 10px; margin-top: 10px;">
-                currently in <span class="bounce">&#127470;&#127475;</span> <b>INDIA</b> <span class="bounce">&#127470;&#127475;</span><br>
-                observing growth at CubeAPM<br>
-                and speedrunning my career like it's a video game &#128526;
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- INFO TABLE -->
-        <div class="retro-box">
-          <div class="retro-box-title">
-            <span>&#128203; Vital Statistics</span>
-            <div class="window-buttons"><span>_</span><span>&#9633;</span><span>X</span></div>
-          </div>
-          <div class="retro-box-content">
-            <table class="info-table">
-              <tr><td>&#127891; EDUCATION #1</td><td>B.Tech in Computer Science<br>NIIT University<br>(the technical foundation)</td></tr>
-              <tr><td>&#127891; EDUCATION #2</td><td>Digital Marketing &amp; Communication<br>MICA (The School of Ideas)<br>(the marketing superpower)</td></tr>
-              <tr><td>&#128188; CURRENT</td><td>Head of Growth @ CubeAPM<br>(observing growth so hard it manifests)</td></tr>
-              <tr><td>&#127757; LOCATION</td><td>&#127470;&#127475; India (where the growth hackers are born)</td></tr>
-              <tr><td>&#9200; CAREER SPEED</td><td>SDR &#8594; Head of Growth<br>(speedrun any% world record holder)</td></tr>
-              <tr><td>&#128200; SAAS COMPANIES</td><td>CubeAPM, 5X, Mailmodo, Trademo, Provana<br>(the B2B SaaS Infinity Stones)</td></tr>
-              <tr><td>&#128293; SUPERPOWER</td><td>Getting promoted before his email signature is updated</td></tr>
-              <tr><td>&#127925; FAV SONG</td><td>Don't Stop Me Now - Queen (it's biographical)</td></tr>
-              <tr><td>&#128055; SPIRIT ANIMAL</td><td>A shark (they literally can't stop moving forward)</td></tr>
-              <tr><td>&#9749; FUEL</td><td>Chai &#8594; Observe &#8594; Grow &#8594; Promote &#8594; Repeat</td></tr>
-            </table>
-          </div>
-        </div>
-
-        <!-- CAREER TIMELINE -->
-        <div class="retro-box">
-          <div class="retro-box-title">
-            <span>&#128197; Career Journey (the speedrun log)</span>
-            <div class="window-buttons"><span>_</span><span>&#9633;</span><span>X</span></div>
-          </div>
-          <div class="retro-box-content">
-            <div class="chaos-timeline">
-              <div class="timeline-item">
-                <h4>NEXT UP - Head of Growth @ CubeAPM</h4>
-                <div class="timeline-company">&#128064; The Observability Era (Starting Aug 2025)</div>
-                <div class="timeline-desc">Already has his next job lined up. Joining CubeAPM to lead growth for a modern observability platform. Will be observing metrics observing other metrics. It's observability all the way down. &#128640;</div>
-              </div>
-              <div class="timeline-item">
-                <h4>Senior Manager, Growth Marketing @ 5X</h4>
-                <div class="timeline-company">&#128200; The Data &amp; AI Era</div>
-                <div class="timeline-desc">Growth marketing for a Data &amp; AI platform. Went from Manager to Senior Manager so fast HR thought it was a typo. Used data to grow a data company. Very inception. Much meta.</div>
-              </div>
-              <div class="timeline-item">
-                <h4>Growth Manager @ Mailmodo</h4>
-                <div class="timeline-company">&#128231; The Email Era</div>
-                <div class="timeline-desc">Grew an email marketing platform. Sent so many growth experiments that his own inbox staged a protest. Learned that the best email is the one that gets opened (groundbreaking stuff).</div>
-              </div>
-              <div class="timeline-item">
-                <h4>SDR &amp; Early Growth Roles</h4>
-                <div class="timeline-company">&#128222; Trademo &amp; Provana (The Grind Era)</div>
-                <div class="timeline-desc">Started as an SDR. Made cold calls. Got rejected. Made more calls. Got promoted. Made slightly warmer calls. Got promoted again. The speedrun had officially begun. &#127939;</div>
-              </div>
-              <div class="timeline-item">
-                <h4>Software Engineering Intern &amp; Research Associate</h4>
-                <div class="timeline-company">&#128187; Global Market Insights (The Origin Story)</div>
-                <div class="timeline-desc">Started as a software engineering intern and research associate. Could have stayed in engineering. Decided growth was more fun. Computer Science degree said "wait where are you going??" <span class="blink" style="color:var(--cyber-red);">PIVOT INITIATED.</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- GAMES SECTION -->
-    <div style="padding: 0 15px;">
-
-      <div style="text-align: center; margin: 20px 0;">
-        <h2 class="rainbow-text" style="font-family: 'Bungee Shade', cursive; font-size: clamp(20px, 4vw, 36px);">
-          &#127918; GAME ZONE &#127918;
-        </h2>
-        <p style="font-family: 'Comic Sans MS', cursive; color: var(--neon-pink); font-size: 14px;">
-          (because every good website needs games, obviously)
+        <p class="reveal">
+          Based in India. Building for a global audience. Currently obsessed with helping engineering teams discover CubeAPM before their monitoring bill makes them cry.
         </p>
       </div>
+    </div>
+  </section>
 
-      <!-- SNAKE GAME -->
-      <div class="retro-box" style="max-width: 500px; margin: 15px auto;">
-        <div class="retro-box-title">
-          <span>&#128013; SNAKE: Automation Edition</span>
-          <div class="window-buttons"><span>_</span><span>&#9633;</span><span>X</span></div>
+  <!-- STATS -->
+  <section style="padding: 0;">
+    <div class="container container--wide" style="padding: 0 var(--margin);">
+      <div class="stats reveal">
+        <div class="stat">
+          <div class="stat-value">5</div>
+          <div class="stat-label">SaaS Companies</div>
         </div>
-        <div class="game-header">
-          <span id="snake-canvas-score" class="game-score">Press START to play</span>
-          <button id="snake-canvas-start" style="
-            background: #39ff14; color: #000; border: 2px outset #66ff66;
-            font-family: 'Press Start 2P', monospace; font-size: 9px;
-            padding: 4px 12px; cursor: pointer;
-          ">&#128013; START</button>
+        <div class="stat">
+          <div class="stat-value">4</div>
+          <div class="stat-label">Title Changes</div>
         </div>
-        <div class="game-container">
-          <canvas id="snake-canvas" width="480" height="300" style="background: #000; display: block; width: 100%; image-rendering: pixelated;"></canvas>
+        <div class="stat">
+          <div class="stat-value">2</div>
+          <div class="stat-label">Degrees</div>
         </div>
-        <div style="padding: 5px 8px; font-family: 'Comic Sans MS', cursive; font-size: 10px; color: #888; text-align: center;">
-          Use arrow keys to move. Eat food. Don't hit walls. Simple, like life should be.
+        <div class="stat">
+          <div class="stat-value">1</div>
+          <div class="stat-label">Operating Principle</div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- WHACK-A-BUG GAME -->
-      <div class="retro-box" style="max-width: 500px; margin: 15px auto;">
-        <div class="retro-box-title">
-          <span>&#128296; WHACK-A-BUG: QA Simulator</span>
-          <div class="window-buttons"><span>_</span><span>&#9633;</span><span>X</span></div>
-        </div>
-        <div class="game-header">
-          <span id="whack-game-score" class="game-score">Click START!</span>
-          <span id="whack-game-timer" class="game-score"></span>
-          <button id="whack-game-start" style="
-            background: #ff6600; color: #000; border: 2px outset #ff9944;
-            font-family: 'Press Start 2P', monospace; font-size: 9px;
-            padding: 4px 12px; cursor: pointer;
-          ">&#128296; START</button>
-        </div>
-        <div id="whack-game" style="padding: 15px; background: #0a0500;">
-          <div id="whack-game-grid" style="
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            max-width: 250px;
-            margin: 0 auto;
-          "></div>
-        </div>
-        <div style="padding: 5px 8px; font-family: 'Comic Sans MS', cursive; font-size: 10px; color: #888; text-align: center;">
-          Click the bugs before they escape! &#128142; items = bonus points. 30 seconds. GO!
-        </div>
-      </div>
+  <hr class="divider" style="margin-top: var(--space-xl);">
 
-      <!-- COOKIE CLICKER -->
-      <div class="retro-box" style="max-width: 500px; margin: 15px auto;">
-        <div class="retro-box-title">
-          <span>&#127850; COOKIE CLICKER: Revenue Edition</span>
-          <div class="window-buttons"><span>_</span><span>&#9633;</span><span>X</span></div>
-        </div>
-        <div style="padding: 20px; text-align: center; background: #0a0500;">
-          <div id="cookie-game">
-            <div id="cookie-game-count" style="font-family: 'Press Start 2P', monospace; font-size: 14px; color: var(--neon-yellow); margin-bottom: 5px;">0 cookies</div>
-            <div id="cookie-game-cps" style="font-family: 'Silkscreen', monospace; font-size: 9px; color: #888; margin-bottom: 15px;">0 cookies/sec | Click power: 1</div>
-            <div style="position: relative; display: inline-block;">
-              <div id="cookie-game-cookie" class="cookie-btn">&#127850;</div>
-            </div>
-            <div style="margin-top: 15px;">
-              <div style="font-family: 'Silkscreen', monospace; font-size: 10px; color: var(--neon-green); margin-bottom: 8px;">UPGRADES:</div>
-              <div id="cookie-game-upgrades"></div>
-            </div>
+  <!-- CAREER JOURNEY -->
+  <section id="journey">
+    <div class="container">
+      <p class="label reveal">Career Journey</p>
+      <h2 class="reveal reveal-delay-1">Not a resume. A progression.</h2>
+
+      <div class="timeline">
+
+        <div class="timeline-entry reveal">
+          <div class="timeline-period">Now</div>
+          <div>
+            <div class="timeline-role">Head of Growth</div>
+            <div class="timeline-company">CubeAPM</div>
+            <p class="timeline-desc">
+              Leading growth for a modern observability platform. The mandate is simple: help engineering teams find a better way to understand their systems. The execution is anything but. Product-led acquisition, content, partnerships, and a whole lot of listening to what developers actually need.
+            </p>
+            <span class="timeline-tag">Observability</span>
+            <span class="timeline-tag">Product-Led Growth</span>
+            <span class="timeline-tag">DevTools</span>
           </div>
         </div>
-        <div style="padding: 5px 8px; font-family: 'Comic Sans MS', cursive; font-size: 10px; color: #888; text-align: center;">
-          Click cookie. Get cookies. Buy upgrades. This is peak productivity.
-        </div>
-      </div>
 
+        <div class="timeline-entry reveal">
+          <div class="timeline-period">Previous</div>
+          <div>
+            <div class="timeline-role">Senior Manager, Growth Marketing</div>
+            <div class="timeline-company">5X</div>
+            <p class="timeline-desc">
+              Grew a Data & AI platform. Went from manager to senior manager by doing the unsexy work nobody else wanted to do&mdash;fixing attribution, rebuilding the funnel from scratch, and proving that content could be a real pipeline driver, not just a vanity metric.
+            </p>
+            <span class="timeline-tag">Data & AI</span>
+            <span class="timeline-tag">Pipeline</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry reveal">
+          <div class="timeline-period">Prior</div>
+          <div>
+            <div class="timeline-role">Growth Manager</div>
+            <div class="timeline-company">Mailmodo</div>
+            <p class="timeline-desc">
+              Email marketing for an email marketing company. The meta was real. Ran hundreds of experiments across channels. Learned that the gap between "good growth" and "great growth" is almost always in the details you're too lazy to test.
+            </p>
+            <span class="timeline-tag">Email Marketing</span>
+            <span class="timeline-tag">Experimentation</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry reveal">
+          <div class="timeline-period">Early</div>
+          <div>
+            <div class="timeline-role">SDR & Early Growth Roles</div>
+            <div class="timeline-company">Trademo &bull; Provana</div>
+            <p class="timeline-desc">
+              This is where it started. Cold calls. Cold emails. Learning to handle rejection without taking it personally. The most valuable skill I've ever built wasn't growth strategy&mdash;it was resilience. Everything after this got easier because this was hard.
+            </p>
+            <span class="timeline-tag">Outbound</span>
+            <span class="timeline-tag">The Grind</span>
+          </div>
+        </div>
+
+        <div class="timeline-entry reveal">
+          <div class="timeline-period">Origin</div>
+          <div>
+            <div class="timeline-role">Software Engineering Intern & Research Associate</div>
+            <div class="timeline-company">Global Market Insights</div>
+            <p class="timeline-desc">
+              Started in engineering. Could have stayed. Chose growth instead because I realized I was more curious about <em>why</em> people use products than <em>how</em> they're built. The CS degree didn't go to waste&mdash;it just got redirected.
+            </p>
+            <span class="timeline-tag">Engineering</span>
+            <span class="timeline-tag">The Pivot</span>
+          </div>
+        </div>
+
+      </div>
     </div>
+  </section>
 
-    <!-- GUESTBOOK -->
-    <div class="retro-box" style="margin-top: 20px;">
-      <div class="retro-box-title">
-        <span>&#128221; Guestbook (plz sign!!)</span>
-        <div class="window-buttons"><span>_</span><span>&#9633;</span><span>X</span></div>
-      </div>
-      <div class="retro-box-content guestbook">
-        <div class="guestbook-entry">
-          <span class="gb-name">xX_GrowthHacker420_Xx</span> <span class="gb-date">02/11/2003 6:00 PM</span>
-          <p>deepankar got promoted AGAIN?? bro i just started my SDR role and this guy is already head of growth. what cheat codes r u using?? &#128640;&#128640;</p>
-        </div>
-        <div class="guestbook-entry">
-          <span class="gb-name">~*ObservabilityNerd*~</span> <span class="gb-date">01/30/2003 2:22 PM</span>
-          <p>just discovered CubeAPM and deepankar's page on the same day. my observability game has never been stronger. also this website gave me eye damage from the neon. 10/10 &#128064;</p>
-        </div>
-        <div class="guestbook-entry">
-          <span class="gb-name">MailmodoAlumni99</span> <span class="gb-date">01/18/2003 10:45 AM</span>
-          <p>worked with deepankar at mailmodo. can confirm he grew so fast we thought he was a bot. HR had to verify he was a real person. twice. &#129302;</p>
-        </div>
-        <div class="guestbook-entry">
-          <span class="gb-name">NIITUniversityCS</span> <span class="gb-date">12/28/2002 4:00 PM</span>
-          <p>we gave this man a CS degree and he used it to... do marketing?? we're not mad, just disappointed. ok actually we're impressed. carry on. &#127891;</p>
-        </div>
-        <div class="guestbook-entry">
-          <span class="gb-name">FutureDeepankar</span> <span class="gb-date">12/10/2002 8:30 AM</span>
-          <p>hi it's me, deepankar from the future. i'm writing this from my CubeAPM desk. the growth metrics are excellent. the chai is hot. life is good. see u in aug 2025. &#9749;</p>
-        </div>
-        <br>
-        <div class="guestbook-form">
-          <p style="color: var(--neon-yellow); font-size: 12px; margin-bottom: 5px;">&#9998; Leave a message:</p>
-          <textarea placeholder="type ur message here... (jk this doesn't actually work lol)"></textarea>
-          <button onclick="alert('Just kidding! This guestbook is powered by IMAGINATION.')">&#128228; Submit</button>
-          <button onclick="alert('You thought there was a reset? How cute.')">&#128260; Reset</button>
-        </div>
-      </div>
-    </div>    <!-- BADGE SHELF -->
-    <div style="text-align: center; padding: 15px;">
-      <div class="badge-shelf">
-        <div class="badge badge-netscape">NETSCAPE NOW!</div>
-        <div class="badge badge-construction">ALWAYS BUILDING</div>
-        <div class="badge badge-free">DEEPANKAR APPROVED</div>
-        <div class="badge badge-geocities">GEOCITIES 4EVER</div>
-        <div class="badge badge-ie">MADE IN INDIA</div>
-        <div class="badge badge-noframes">FRAMES R BAD</div>
-      </div>
-      <br>
+  <hr class="divider divider--accent">
 
-      <!-- VISITOR COUNTER -->
-      <span style="font-family: 'Silkscreen', monospace; font-size: 10px; color: var(--neon-yellow);">YOU ARE VISITOR #:</span><br>
-      <div id="visitor-count" class="odometer" style="margin-top: 5px;">
-        <span class="odo-digit">0</span>
-        <span class="odo-digit">9</span>
-        <span class="odo-digit">9</span>
-        <span class="odo-digit">9</span>
-        <span class="odo-digit">9</span>
-        <span class="odo-digit">9</span>
+  <!-- PHILOSOPHY -->
+  <section id="philosophy">
+    <div class="container container--wide">
+      <p class="label reveal">Philosophy</p>
+      <h2 class="reveal reveal-delay-1">How I think about growth</h2>
+
+      <div class="frameworks reveal reveal-delay-2">
+
+        <div class="framework-card">
+          <div class="framework-number">01</div>
+          <h3>Reps over theory</h3>
+          <p>
+            You can read every growth playbook ever written and still not know how to grow a product. The only way to learn is by doing&mdash;launching campaigns that fail, writing copy that nobody clicks, building funnels that leak. The reps compound.
+          </p>
+        </div>
+
+        <div class="framework-card">
+          <div class="framework-number">02</div>
+          <h3>Observe before you optimize</h3>
+          <p>
+            Working in observability taught me something that applies to all of growth: you can't fix what you can't see. Before you touch the funnel, understand it. Before you scale a channel, measure it. Observation isn't passive&mdash;it's the prerequisite.
+          </p>
+        </div>
+
+        <div class="framework-card">
+          <div class="framework-number">03</div>
+          <h3>Technical + creative is rare</h3>
+          <p>
+            Most growth people are either technical or creative. Rarely both. A CS degree means I can read the data myself. A marketing degree means I know what story the data is telling. The intersection is where leverage lives.
+          </p>
+        </div>
+
+        <div class="framework-card">
+          <div class="framework-number">04</div>
+          <h3>Never outgrow the grind</h3>
+          <p>
+            Head of Growth sounds impressive until you realize the job is still about doing the work. Writing the email. Analyzing the cohort. Talking to customers. The title changes. The work doesn't. And that's the point.
+          </p>
+        </div>
+
       </div>
-      <br><br>
-      <p style="font-family: 'Comic Sans MS', cursive; font-size: 11px; color: #666;">
-        &#169; 2003 Deepankar Dimri's Growth Galaxy. All rights reserved.<br>
-        No SDRs were harmed in the making of this website.<br>
-        (They were actually promoted to Head of Growth.)<br><br>
-        <span style="font-size: 9px; color: #444;">Best viewed at 800x600 on Netscape Navigator 4.0 while getting promoted</span>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CONNECT -->
+  <section id="connect" class="contact">
+    <div class="container">
+      <p class="label reveal">Connect</p>
+      <h2 class="reveal reveal-delay-1">Let's talk growth.</h2>
+      <p class="body-large reveal reveal-delay-2">
+        Always open to conversations about B2B growth, observability, career pivots, or anything in between.
       </p>
+      <a href="https://www.linkedin.com/in/deepankar-dimri/" target="_blank" rel="noopener noreferrer" class="contact-link reveal reveal-delay-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
     </div>
+  </section>
 
-  </div>
-
-  <!-- BOTTOM MARQUEE -->
-  <div class="marquee-bar">
-    <div class="marquee-content">
-      &#128293; DEEPANKAR DIMRI - HEAD OF GROWTH - CUBEAPM - CAREER SPEEDRUNNER - B.TECH + MICA DUAL WIELDER - OBSERVABILITY ENTHUSIAST - B2B SAAS NOMAD - GROWTH METRICS WHISPERER &#128293; IF YOU'RE READING THIS YOU'VE SCROLLED TOO FAR &#128293; GO OBSERVE SOMETHING &#128293; OR BETTER YET GO GET PROMOTED &#128293;
+  <!-- FOOTER -->
+  <footer>
+    <div class="container container--wide">
+      <p>Deepankar Dimri &mdash; India</p>
+      <p>Head of Growth, CubeAPM</p>
     </div>
-  </div>
+  </footer>
 
-  <script src="../js/effects.js"></script>
-  <script src="../js/games.js"></script>
+  <!-- MINIMAL JS: Scroll reveal only -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      reveals.forEach(el => observer.observe(el));
+    });
+  </script>
 </body>
 </html>
